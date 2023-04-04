@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminRequest extends FormRequest
+class AppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,10 +14,6 @@ class AdminRequest extends FormRequest
         return true;
     }
 
-    public function unauthorize()
-    {
-        return response()->json(['status'=>'you are unauthorize']);
-    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,8 +22,15 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'=>'required|email',
-            'password'=>'required',
+            'user_id'=>'required',
+            //'doctor_id'=>'required',
+            'specialization'=>'required|max:20',
+            'day'=>'required|max:20',
+            'month'=>'required|max:20',
+            'year'=>'required|max:20',
+            'hour'=>'required|max:20',
+            'minute'=>'required|max:20',
+    							
         ];
     }
 }

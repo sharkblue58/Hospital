@@ -18,13 +18,16 @@ class DefaultData extends Seeder
         $data['first_name']='mo';
         $data['last_name']='essam';
         $data['email']='admin@gmail.com'; 
+        $data['gender']='male';
+        $data['role']='admin';
         $data['password']=Hash::make('test123!');
-        Admin::create($data);
+        User::create($data);
 
         $cdata['first_name']='adham';
         $cdata['last_name']='adam';
         $cdata['email']='user@gmail.com';
         $cdata['gender']='male';
+        $data['role']='user';
         $cdata['password']=Hash::make('test123!');
         User::create($cdata);
     }

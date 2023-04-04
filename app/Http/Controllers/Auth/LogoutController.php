@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Auth;
 
 use Exception;
 use Illuminate\Http\Request;
