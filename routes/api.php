@@ -2,14 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\ResetPassController;
 use App\Http\Controllers\User\EmailVerfyController;
 use App\Http\Controllers\User\ForgetPassController;
 use App\Http\Controllers\Admin\AdminProfileController;
-use App\Http\Controllers\User\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,15 @@ Route::get('email-verfication',[EmailVerfyController::class,'resendEmailVerify']
 ->middleware(['auth:sanctum', 'ability:user,admin']);
 Route::post('logout',[LogoutController::class,'logout'])
 ->middleware(['auth:sanctum', 'ability:user,admin']);
+
+//google
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('/google/redirect', 'redirect');
+    Route::get('/google/callback', 'callback');
+});
+
+//facebook
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('/facebook/redirect', 'redirect');
+    Route::get('/facebook/callback', 'callback');
+});
