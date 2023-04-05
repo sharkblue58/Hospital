@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Doctor;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
@@ -15,20 +16,25 @@ class DefaultData extends Seeder
      */
     public function run(): void
     {
-        $data['first_name']='mo';
-        $data['last_name']='essam';
-        $data['email']='admin@gmail.com'; 
-        $data['gender']='male';
-        $data['role']='admin';
-        $data['password']=Hash::make('test123!');
-        User::create($data);
+        $adminData['first_name']='mo';
+        $adminData['last_name']='essam';
+        $adminData['email']='admin@gmail.com'; 
+        $adminData['gender']='male';
+        $adminData['role']='admin';
+        $adminData['password']=Hash::make('test123!');
+        User::create($adminData);
 
-        $cdata['first_name']='adham';
-        $cdata['last_name']='adam';
-        $cdata['email']='user@gmail.com';
-        $cdata['gender']='male';
-        $data['role']='user';
-        $cdata['password']=Hash::make('test123!');
-        User::create($cdata);
+        $userData['first_name']='adham';
+        $userData['last_name']='adam';
+        $userData['email']='user@gmail.com';
+        $userData['gender']='male';
+        $userData['role']='user';
+        $userData['password']=Hash::make('test123!');
+        User::create($userData);
+
+        $doctorData['first_name']='mo';
+        $doctorData['last_name']='essam';
+        $doctorData['gender']='male';
+        Doctor::create($doctorData);
     }
 }

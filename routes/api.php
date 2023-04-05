@@ -11,7 +11,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPassController;
 use App\Http\Controllers\Auth\EmailVerfyController;
 use App\Http\Controllers\Auth\ForgetPassController;
-
+use App\Http\Controllers\Doctor\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +62,13 @@ Route::controller(AppointmentController::class)->group(function(){
     Route::get('appointment/{id}', 'show');
     Route::put('appointment/{id}', 'update');
     Route::delete('appointment/{id}', 'destroy');
+});
+
+//doctor
+Route::controller(DoctorController::class)->group(function(){
+    Route::get('doctor', 'index');
+    Route::post('doctor/store','store');
+    Route::get('doctor/{id}', 'show');
+    Route::put('doctor/{id}', 'update');
+    Route::delete('doctor/{id}', 'destroy');
 });

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class DoctorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,9 @@ class AppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'required',
-            'doctor_id'=>'required',
-            'specialization'=>'required|max:20',
-            'day'=>'required|max:20',
-            'month'=>'required|max:20',
-            'year'=>'required|max:20',
-            'hour'=>'required|max:20',
-            'minute'=>'required|max:20',
-    							
+            'first_name'=>'required|max:20',
+            'last_name'=>'required|max:20',
+            'gender'=>'required|max:20',
         ];
     }
 }

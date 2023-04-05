@@ -30,11 +30,11 @@ class AppointmentController extends Controller
             } else {
                 return response()->json([
                     'status' => 'true',
-                    'msg' => 'there is no reviews now '
+                    'msg' => 'there is no appointments now '
                 ],201);
             }
         } catch (Exception $ex) {
-            return response()->json(['status' => 'error', 'expcetion' => $ex->getMessage(), 'msg' => 'failed to get reviews'], 500);
+            return response()->json(['status' => 'error', 'expcetion' => $ex->getMessage(), 'msg' => 'failed to get appointment'], 500);
         }
 
     }
@@ -48,7 +48,7 @@ class AppointmentController extends Controller
         $Appointment= Appointment::create([
          
             'user_id' => $request->user_id,
-            //'doctor_id' => $request->doctor_id,
+            'doctor_id' => $request->doctor_id,
             'specialization' => $request->specialization,
             'day' => $request->day, 
             'month' => $request->month, 
