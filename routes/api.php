@@ -12,17 +12,8 @@ use App\Http\Controllers\Auth\ResetPassController;
 use App\Http\Controllers\Auth\EmailVerfyController;
 use App\Http\Controllers\Auth\ForgetPassController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\User\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
 
 //public
@@ -71,4 +62,13 @@ Route::controller(DoctorController::class)->group(function(){
     Route::get('doctor/{id}', 'show');
     Route::put('doctor/{id}', 'update');
     Route::delete('doctor/{id}', 'destroy');
+});
+
+//user
+Route::controller(UserController::class)->group(function(){
+    Route::get('user', 'index');
+    Route::post('user/store','store');
+    Route::get('user/{id}', 'show');
+    Route::put('user/{id}', 'update');
+    Route::delete('user/{id}', 'destroy');
 });
