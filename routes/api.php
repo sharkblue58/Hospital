@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Appointment\AppointmentController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
@@ -17,16 +17,14 @@ use App\Http\Controllers\User\UserController;
 
 
 //public
+Route::post('admin/Login',[AdminController::class,'adminLogin']);
 Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,'login']);
-Route::post('admin/login',[AdminController::class,'login']);
 Route::post('password/forget-password',[ForgetPassController::class,'forgetPassword']);
 Route::post('password/reset-password',[ResetPassController::class,'passwordReset']);
-//admin
-Route::get('admin/Alladmins',[AdminProfileController::class,'profile'])
-->middleware(['auth:sanctum', 'ability:admin']);
 
-//user
+
+//Auth
 Route::post('email-verfication',[EmailVerfyController::class,'emaiVerify'])
 ->middleware(['auth:sanctum', 'ability:user,admin']);
 Route::get('email-verfication',[EmailVerfyController::class,'resendEmailVerify'])
@@ -48,27 +46,27 @@ Route::controller(FacebookController::class)->group(function(){
 
 //appointment
 Route::controller(AppointmentController::class)->group(function(){
-    Route::get('appointment', 'index');
-    Route::post('appointment/store','store');
-    Route::get('appointment/{id}', 'show');
-    Route::put('appointment/{id}', 'update');
-    Route::delete('appointment/{id}', 'destroy');
+    Route::get('appointment', 'index')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::post('appointment/store','store')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::get('appointment/{id}', 'show')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::put('appointment/{id}', 'update')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::delete('appointment/{id}', 'destroy')->middleware(['auth:sanctum', 'ability:admin']);
 });
 
 //doctor
 Route::controller(DoctorController::class)->group(function(){
-    Route::get('doctor', 'index');
-    Route::post('doctor/store','store');
-    Route::get('doctor/{id}', 'show');
-    Route::put('doctor/{id}', 'update');
-    Route::delete('doctor/{id}', 'destroy');
+    Route::get('doctor', 'index')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::post('doctor/store','store')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::get('doctor/{id}', 'show')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::put('doctor/{id}', 'update')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::delete('doctor/{id}', 'destroy')->middleware(['auth:sanctum', 'ability:admin']);
 });
 
 //user
 Route::controller(UserController::class)->group(function(){
-    Route::get('user', 'index');
-    Route::post('user/store','store');
-    Route::get('user/{id}', 'show');
-    Route::put('user/{id}', 'update');
-    Route::delete('user/{id}', 'destroy');
+    Route::get('user', 'index')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::post('user/store','store')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::get('user/{id}', 'show')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::put('user/{id}', 'update')->middleware(['auth:sanctum', 'ability:admin']);
+    Route::delete('user/{id}', 'destroy')->middleware(['auth:sanctum', 'ability:admin']);
 });

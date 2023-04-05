@@ -17,15 +17,10 @@ class UserController extends Controller
     {
         try {
 
-            $allUsers = UserResource::collection(
-                User::all()
-          );
+            $allUsers =User::all();
            
             if ($allUsers!= null) {
-                return response()->json([
-                    'status' => 'true',
-                    'data' => $allUsers,
-                ], 201);
+                $allUsers = UserResource::collection(User::all() );
             } else {
                 return response()->json([
                     'status' => 'true',
